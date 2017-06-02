@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.opencv.core.Core;
 import javafx.event.EventHandler;
@@ -13,8 +15,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("camera.fxml"));
-            BorderPane rootElement = (BorderPane) loader.load();
-            Scene scene = new Scene(rootElement, 800, 600);
+            VBox rootElement = loader.load();
+            Scene scene = new Scene(rootElement, rootElement.getMaxWidth(), rootElement.getMaxHeight());
             //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setTitle("OpenCV");
             primaryStage.setScene(scene);
@@ -32,7 +34,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);       //load natice c++ opencv libraries
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);       //load native c++ opencv libraries
         launch(args);
     }
 }
